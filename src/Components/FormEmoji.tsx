@@ -12,7 +12,7 @@ export default function FormEmoji() {
       <h1>Write Message</h1>
       <input type="text" />
       <button onClick={handleBtnEmoji}>🙂</button>
-      <div>
+      <div className="emojiContainer">
         {EmojiData.map(emoji =>{
           return <span key={emoji.name}>{emoji.symbol}</span>
         })}

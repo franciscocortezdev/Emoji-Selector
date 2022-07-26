@@ -1,0 +1,8 @@
+.emojiContainer {
+  width: 200px;
+  height: 200px;
+  background-color: gray;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}

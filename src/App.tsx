@@ -1,9 +1,11 @@
 import './App.css';
+import FormEmoji from './Components/FormEmoji';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <FormEmoji/>
     </div>
   );
 }

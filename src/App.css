@@ -1,8 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: steelblue;
+  width: 100%;
+  height: 100vh;
+}
+
+.Title {
+  margin-bottom: 20px;
+}
+.txtInput {
+  width: 500px;
+  font-size: 20px;
+  outline: none;
+  padding: 4px 8px;
+  margin-right: 10px;
+}
+.btnEmoji {
+  padding: 4px 8px;
+  font-size: 16px;
+}
+.emojis {
+  display: inline-block;
+  position: relative;
+}
+
 .emojiContainer {
+  position: absolute;
+  animation: emojiBox 0.5s ease-in-out forwards;
   width: 200px;
   height: 200px;
-  background-color: gray;
+  padding: 4px;
+  background-color: gainsboro;
+  border-radius: 8px;
+  margin-top: 4px;
+  bottom: 40px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 95%,
+    18% 95%,
+    13% 100%,
+    8% 95%,
+    0 95%
+  );
+}
+
+@keyframes emojiBox {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -8,19 +8,22 @@ export default function FormEmoji() {
   }
   
   return (
-    <>
-      <h1>Write Message</h1>
-      <input type="text" />
-      <button onClick={handleBtnEmoji}>🙂</button>
-      {
-        BoxEmoji && 
-        <div className="emojiContainer">
-        {EmojiData.map(emoji =>{
-          return <span key={emoji.name}>{emoji.symbol}</span>
-        })}
-        </div>
-      }
+    <div className="AppContainer">
+      <h1 className="Title">Write Message</h1>
+      <input type="text" className="txtInput"/>
+      <div className="emojis">
+        <button onClick={handleBtnEmoji} className="btnEmoji">🙂</button>
+        {
+          BoxEmoji && 
+          <div className="emojiContainer">
+          {EmojiData.map(emoji =>{
+            return <span key={emoji.name}>{emoji.symbol}</span>
+          })}
+          </div>
+        }
+
+      </div>
       
-    </>
+    </div>
   )
 }

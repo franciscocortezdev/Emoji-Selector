@@ -1,12 +1,14 @@
 import React, { useState, useRef } from "react"
 
+
 import EmojiData from '../Data'
 
 export default function FormEmoji() {
   const [BoxEmoji, setBoxEmoji] = useState(false);
   const [ListEmoji, setListEmoji] = useState<EmojiData>(EmojiData)
-  //const [Search, setSearch] = useState<string>()
+  
   const inputRef = useRef<HTMLInputElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   type EmojiData = {
     symbol: string,
     name: string,
@@ -33,9 +35,23 @@ export default function FormEmoji() {
     }
     
   }
+  const handleClicEmoji = (ev:React.FormEvent<HTMLSpanElement>)=>{
+    const emoji = ev.currentTarget.innerText
+    if (inputRef.current !== null) {
+      const text = inputRef.current.value
+      const cursorPosition = inputRef.current.selectionStart
+      const prevText = text.substring(0, cursorPosition)
+      const nextText = text.substring(cursorPosition)
+      inputRef.current.value = prevText + emoji + nextText
+      inputRef.current.selectionStart = cursorPosition + emoji.length
+      inputRef.current.selectionEnd = cursorPosition + emoji.length
+      inputRef.current.focus()
+    }
+    
+  }
   
   return (
-    <div className="AppContainer">
+    <div className="AppContainer" ref={containerRef}>
       <h1 className="Title">Write Message</h1>
       <input ref={inputRef} type="text" className="txtInput"/>
       <div className="emojis">
@@ -45,7 +61,7 @@ export default function FormEmoji() {
           <div className="emojiContainer">
             <input type="text" onChange={handleSearch}/>
           {ListEmoji.map(emoji =>{
-            return <span key={emoji.name}>{emoji.symbol}</span>
+            return <span onClick={handleClicEmoji} key={emoji.name}>{emoji.symbol}</span>
           })}
           </div>
         }

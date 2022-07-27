@@ -5,7 +5,7 @@ import EmojiData from '../Data'
 export default function FormEmoji() {
   const [BoxEmoji, setBoxEmoji] = useState(false);
   const [ListEmoji, setListEmoji] = useState<EmojiData>(EmojiData)
-  const [Search, setSearch] = useState<string>()
+  //const [Search, setSearch] = useState<string>()
   const inputRef = useRef<HTMLInputElement>(null)
   type EmojiData = {
     symbol: string,
@@ -18,17 +18,17 @@ export default function FormEmoji() {
    inputRef.current?.focus()
   }
   const handleSearch = (ev:React.FormEvent<HTMLInputElement>) =>{
-    setSearch(ev.currentTarget.value)
+    
+    const query = ev.currentTarget.value.trim().toLowerCase()
 
-    console.log(Search)
+    console.log(query)
 
-    if(Search !== undefined && Search !== ""){
+    if(query !== undefined && query !== ""){
       const SearchResult = EmojiData.filter(emoji =>{
-        return emoji.keywords.includes(Search)
+        return emoji.keywords.includes(query)
       })
       setListEmoji(SearchResult)
-    }
-    if(Search === "" ){
+    }else{ 
       setListEmoji(EmojiData)
     }
     

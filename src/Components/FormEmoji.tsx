@@ -1,41 +1,39 @@
-import React, { useState, useRef } from "react"
-
+import React, { useState, useRef } from 'react'
 
 import EmojiData from '../Data'
 
-export default function FormEmoji() {
-  const [BoxEmoji, setBoxEmoji] = useState(false);
-  const [ListEmoji, setListEmoji] = useState<EmojiData>(EmojiData)
-  
+type EmojiType = {
+  symbol: string,
+  name: string,
+  keywords: string
+}[]
+
+export default function FormEmoji () {
+  const [BoxEmoji, setBoxEmoji] = useState<boolean>(false)
+  const [ListEmoji, setListEmoji] = useState<EmojiType>(EmojiData)
+
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  type EmojiData = {
-    symbol: string,
-    name: string,
-    keywords: string
-}[]
-  const handleBtnEmoji = ()=>{
-   
+
+  const handleBtnEmoji = () => {
     setBoxEmoji(!BoxEmoji)
-   inputRef.current?.focus()
+    inputRef.current?.focus()
   }
-  const handleSearch = (ev:React.FormEvent<HTMLInputElement>) =>{
-    
+  const handleSearch = (ev:React.FormEvent<HTMLInputElement>) => {
     const query = ev.currentTarget.value.trim().toLowerCase()
 
     console.log(query)
 
-    if(query !== undefined && query !== ""){
-      const SearchResult = EmojiData.filter(emoji =>{
+    if (query !== undefined && query !== '') {
+      const SearchResult = EmojiData.filter(emoji => {
         return emoji.keywords.includes(query)
       })
       setListEmoji(SearchResult)
-    }else{ 
+    } else {
       setListEmoji(EmojiData)
     }
-    
   }
-  const handleClicEmoji = (ev:React.FormEvent<HTMLSpanElement>)=>{
+  const handleClicEmoji = (ev:React.FormEvent<HTMLSpanElement>) => {
     const emoji = ev.currentTarget.innerText
     if (inputRef.current !== null) {
       const text = inputRef.current.value
@@ -47,9 +45,8 @@ export default function FormEmoji() {
       inputRef.current.selectionEnd = cursorPosition + emoji.length
       inputRef.current.focus()
     }
-    
   }
-  
+
   return (
     <div className="AppContainer" ref={containerRef}>
       <h1 className="Title">Write Message</h1>
@@ -57,17 +54,17 @@ export default function FormEmoji() {
       <div className="emojis">
         <button onClick={handleBtnEmoji} className="btnEmoji">🙂</button>
         {
-          BoxEmoji && 
+          BoxEmoji &&
           <div className="emojiContainer">
             <input type="text" onChange={handleSearch}/>
-          {ListEmoji.map(emoji =>{
-            return <span onClick={handleClicEmoji} key={emoji.name}>{emoji.symbol}</span>
+          {ListEmoji.map(emoji => {
+            return <button onClick={handleClicEmoji} key={emoji.name}>{emoji.symbol}</button>
           })}
           </div>
         }
 
       </div>
-      
+
     </div>
   )
 }

@@ -1,13 +1,13 @@
-import './App.css';
-import FormEmoji from './Components/FormEmoji';
 
+import './App.css'
+import FormEmoji from './Components/FormEmoji'
 
-function App() {
+function App () {
   return (
     <div className="App">
       <FormEmoji/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

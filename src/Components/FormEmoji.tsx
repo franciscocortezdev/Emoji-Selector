@@ -14,7 +14,7 @@ export default function FormEmoji () {
   return (
     <div className="AppContainer">
       <h1 className="Title">Write Message</h1>
-      <input ref={inputRef} type="text" className="txtInput" />
+      <input placeholder='Message' ref={inputRef} type="text" className="txtInput" />
       <div className="emojis">
         <button onClick={handleBtnEmoji} className="btnEmoji">
           🙂

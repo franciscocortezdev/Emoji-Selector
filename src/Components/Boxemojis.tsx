@@ -46,7 +46,7 @@ export default function Boxemojis ({ BoxEmoji, inputRef }: BoxemojiProps) {
     {
       BoxEmoji && (
         <div className="emojiContainer">
-        <input type="text" onChange={handleSearch} />
+        <input placeholder='Search' type="text" onChange={handleSearch}/>
         {ListEmoji.map((emoji) => {
           return (
             <button onClick={handleClicEmoji} key={emoji.name}>

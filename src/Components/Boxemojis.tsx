@@ -1,17 +1,6 @@
 import React, { useState } from 'react'
 import EmojiData from '../Data'
-
-type EmojiType = {
-  symbol: string;
-  name: string;
-  keywords: string;
-}[];
-
-interface BoxemojiProps{
-  BoxEmoji: boolean,
-  inputRef: React.RefObject<HTMLInputElement>
-
-}
+import { EmojiType, BoxemojiProps } from '../types'
 
 export default function Boxemojis ({ BoxEmoji, inputRef }: BoxemojiProps) {
   const [ListEmoji, setListEmoji] = useState<EmojiType>(EmojiData)
